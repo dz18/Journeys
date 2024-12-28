@@ -5,9 +5,7 @@ import {
     TextField, 
     Typography 
 } from "@mui/material"
-import { 
-    signInWithEmailAndPassword
-} from "firebase/auth"
+import { useAuth } from "../contexts/AuthContext"
 import { useState } from "react"
 import { db } from "../../firebaseconfig"
 import { useNavigate,  } from "react-router-dom"
@@ -15,14 +13,15 @@ import { useNavigate,  } from "react-router-dom"
 export default function IndexPage(){
 
     const navigate = useNavigate()
+    const { SignIn } = useAuth()
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
     const handleSubmit = async () => {
         try {
-            // signInWithEmailAndPassword(db, email, password)
-            navigate('/stays')
+            SignIn(email, password)
+            navigate('/search/stays')
         } catch (error) {
             console.error('ERROR (index.jsx):', error)
         }
