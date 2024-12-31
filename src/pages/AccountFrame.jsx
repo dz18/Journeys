@@ -6,7 +6,7 @@ export default function AccountFrame() {
     return (
         <>
             <AccountNav/>
-            <Box pt={10}>
+            <Box mt={2}>
                 <Outlet/>
             </Box>
         </>

@@ -12,6 +12,11 @@ import { useEffect, useState } from "react";
 
 const searchNav = [
     {
+        icon: <TravelExplore/>,
+        text: 'Flights + Hotel',
+        path: '/search/flight-hotel'
+    },
+    {
         icon: <BedOutlined/>,
         text: 'Stays',
         path: '/search/stays'
@@ -21,11 +26,6 @@ const searchNav = [
         text: 'Flights',
         path: '/search/flights'
     },
-    {
-        icon: <TravelExplore/>,
-        text: 'Flights + Hotel',
-        path: '/search/flight-hotel'
-    }
 ]
 
 export default function NavSearchLayer() {
@@ -66,6 +66,7 @@ export default function NavSearchLayer() {
                     px: 3,
                     my: 1,
                     mr: 1,
+                    transition: "background-color 0.3s ease",
                     "&:hover": {
                         backgroundColor: "rgba(255, 255, 255, 0.2)",
                     },

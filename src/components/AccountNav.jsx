@@ -10,7 +10,7 @@ export default function SearchNav() {
 
     return (
         <Box sx={{flexGrow: 1}}>
-            <AppBar position="fixed"
+            <AppBar position="static"
                 sx={{
                     boxShadow: "none",
                 }}
@@ -20,7 +20,7 @@ export default function SearchNav() {
                         my: 1
                     }}>
 
-                        <NavMainLayer/>             
+                        <NavMainLayer/>         
 
                     </Container>
                 </Toolbar>

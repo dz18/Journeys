@@ -117,8 +117,8 @@ export default function NavMainLayer() {
                 open={open}
                 onClose={closeMenu}
             >
-            {menuItems.map((item) => (
-                <MenuItem onClick={() => navigate(item.path)}>
+            {menuItems.map((item, i) => (
+                <MenuItem key={i} onClick={() => navigate(item.path)}>
                     <ListItemIcon>
                         {item.icon}
                     </ListItemIcon>

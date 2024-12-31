@@ -21,7 +21,7 @@ export default function IndexPage(){
     const handleSubmit = async () => {
         try {
             SignIn(email, password)
-            navigate('/search/stays')
+            navigate('/search/flight-hotel')
         } catch (error) {
             console.error('ERROR (index.jsx):', error)
         }
