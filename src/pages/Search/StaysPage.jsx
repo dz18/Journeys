@@ -5,24 +5,38 @@ import {
     Button, 
     Box, 
     Divider, 
-    Grid2
+    Grid2,
+    CircularProgress
 } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getAccessToken, getHotels } from "../../services/AmadeusAPI";
 import { DatePicker } from "@mui/x-date-pickers";
 import { PlaceAutocomplete } from "../../services/GooglePlacesAPI";
 import HotelCard from "../../components/HotelCard";
+import { useSearch } from "../../contexts/searchContext";
 
 const itemsPerPage = 10;
 
 export default function StaysPage() {
 
+    const { 
+        hotelList, 
+        setHotelList, 
+        currentSearchedName, 
+        setCurrentSearchedName 
+    } = useSearch();
+    useEffect(() => {
+        if (hotelList) {
+            updatePaginatedHotels(1, hotelList.data)
+            setTotalPages(Math.ceil(hotelList.data.length / itemsPerPage));
+        }
+    }, [])
+
     const [destination, setDestination] = useState('');
-    const [currentSearchedName, setCurrentSearchedName] = useState('')
-    const [hotelList, setHotelList] = useState(null);
     const [paginatedHotels, setPaginatedHotels] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
+    const [isLoading, setIsLoading] = useState(false)
 
     const updatePaginatedHotels = (page, hotelData) => {
         const startIndex = (page - 1) * itemsPerPage;
@@ -31,6 +45,7 @@ export default function StaysPage() {
     };
 
     const handleSearch = async () => {
+        setIsLoading(true)
         const accessToken = await getAccessToken();
         const latitude = destination.latitude;
         const longitude = destination.longitude;
@@ -41,6 +56,7 @@ export default function StaysPage() {
         setTotalPages(Math.ceil(fullHotelList.data.length / itemsPerPage));
         setCurrentPage(1);
         updatePaginatedHotels(1, fullHotelList.data);
+        setIsLoading(false)
     };
 
     const handleNextPage = () => {
@@ -106,6 +122,15 @@ export default function StaysPage() {
             </Button>
 
             {/* Results */}
+            {isLoading && 
+                <Box sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    my: 3
+                }}>
+                    <CircularProgress/>
+                </Box>
+            }
             {hotelList && (
                 <>
                     <Typography
