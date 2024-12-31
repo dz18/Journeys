@@ -69,6 +69,27 @@ const getHotels = async (accessToken, latitude, longitude) => {
 
 }
 
+const getAvailableRooms = async (accessToken, hotelIds, adults) => {
+    const searchUrl = 'https://test.api.amadeus.com/v3/shopping/hotel-offers'
+
+    try {
+        const response = await axios.get(searchUrl, {
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+                "Content-Type": "application/json"
+            },
+            params: {
+                hotelIds
+            }
+        })
+
+        return response.data;
+    } catch (error) {
+        console.error("Error searching for Hotels", error);
+        throw error;
+    }
+}
+
 /* Once the user finds a hotel, check its availability. */
 const checkHotelAvailability = async (accessToken) => {
 
@@ -77,5 +98,5 @@ const checkHotelAvailability = async (accessToken) => {
 export {
     getAccessToken,
     searchFlights,
-    getHotels
+    getHotels,
 }

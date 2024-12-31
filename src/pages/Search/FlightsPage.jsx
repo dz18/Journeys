@@ -7,25 +7,12 @@ import {
     Divider
 } from "@mui/material";
 import { useEffect, useState } from "react";
-import { getAccessToken, getHotels, searchFlights } from "../services/AmadeusAPI";
+import { getAccessToken } from "../../services/AmadeusAPI";
 import { DatePicker, StaticDatePicker} from "@mui/x-date-pickers";
-import { PlaceAutocomplete } from "../services/GooglePlacesAPI";
-import { APIProvider } from "@vis.gl/react-google-maps";
-import HotelCard from "../components/HotelCard";
 
-export default function StaysPage() {
 
+export default function FlightsPage() {
     const [token, setToken] = useState(null)
-    const [destination, setDestination] = useState('')
-    const [hotelList, setHotelList] = useState(null)
-
-    const handleSearch = async () => {
-        const accessToken = await getAccessToken()
-        const latitude = destination.latitude
-        const longitude = destination.longitude
-        const hotelList = await getHotels(accessToken, latitude, longitude)
-        setHotelList(hotelList)
-    }
 
     return (
         <Container>
@@ -51,8 +38,11 @@ export default function StaysPage() {
                     justifyContent: 'center',
                 }}>
                     <Box flex={6} mr='4px'>
-                        <Typography fontWeight='bold'>Destination (City)</Typography>
-                        <PlaceAutocomplete onPlaceSelect={setDestination}/>
+                        <Typography fontWeight='bold'>Destination</Typography>
+                        <TextField 
+                            placeholder="Where are we going?"
+                            fullWidth
+                        />
                     </Box>
                     <Box flex={3} mr='4px'>
                         <Typography fontWeight='bold'>Check-In Date</Typography>
@@ -85,22 +75,10 @@ export default function StaysPage() {
                         />
                     </Box>
                 </Box>
-                <Button 
-                    onClick={handleSearch}
-                    variant="contained" 
-                    fullWidth 
-                >
-                    SEARCH
-                </Button>
+                <Button variant="contained" fullWidth sx={{mx: 1}}>SEARCH</Button>
             </Box>
             
             {/* Instructions */}
-
-            {/* Results */}
-            {hotelList && hotelList.data.map((hotel) => (
-                <HotelCard data={hotel}/>
-            ))}
-            
 
         </Container>
     )

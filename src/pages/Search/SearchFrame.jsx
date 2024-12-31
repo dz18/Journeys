@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import SearchNav from "../components/SearchNav";
+import SearchNav from "../../components/SearchNav";
 import { Box } from "@mui/material";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';

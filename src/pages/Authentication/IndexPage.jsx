@@ -5,10 +5,9 @@ import {
     TextField, 
     Typography 
 } from "@mui/material"
-import { useAuth } from "../contexts/AuthContext"
+import { useAuth } from "../../contexts/AuthContext"
 import { useState } from "react"
-import { db } from "../../firebaseconfig"
-import { useNavigate,  } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 export default function IndexPage(){
 

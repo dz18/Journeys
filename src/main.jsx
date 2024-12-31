@@ -7,21 +7,19 @@ import {
 import '@fontsource/roboto/300.css';
 
 // Contexts
-import { 
-  AuthProvider,
-} from './contexts/AuthContext.jsx';
+import { AuthProvider } from './contexts/AuthContext.jsx';
 
 // Pages
-import IndexPage from './pages/IndexPage.jsx'
-import StaysPage from './pages/StaysPage.jsx';
-import SearchFrame from './pages/SearchFrame.jsx';
-import FlightsPage from './pages/FlightsPage.jsx';
-import FlightHotelPage from './pages/FlightHotelPage.jsx';
-import ManageAccountPage from './pages/ManageAccountPage.jsx';
-import CartPage from './pages/CartPage.jsx';
-import WalletPage from './pages/WalletPage.jsx';
-import OrderHistoryPage from './pages/OrderHistoryPage.jsx';
-import AccountFrame from './pages/AccountFrame.jsx';
+import IndexPage from './pages/Authentication/IndexPage.jsx';
+import StaysPage from './pages/Search/StaysPage.jsx';
+import SearchFrame from './pages/Search/SearchFrame.jsx';
+import FlightsPage from './pages/Search/FlightsPage.jsx';
+import FlightHotelPage from './pages/Search/FlightHotelPage.jsx';
+import ManageAccountPage from './pages/Account/ManageAccountPage.jsx';
+import CartPage from './pages/Account/CartPage.jsx';
+import WalletPage from './pages/Account/WalletPage.jsx';
+import OrderHistoryPage from './pages/Account/OrderHistoryPage.jsx';
+import AccountFrame from './pages/Account/AccountFrame.jsx';
 
 
 const router = createBrowserRouter([
@@ -34,8 +32,8 @@ const router = createBrowserRouter([
     element: <SearchFrame/>,
     children: [
       {
-        path: "stays",
-        element: <StaysPage/>
+        path: "stays/",
+        element: <StaysPage/>,
       },
       {
         path: "flights",
